@@ -16,4 +16,8 @@ void loop()
   Serial.println("Going forward");
   analogWrite(motorPin, 234);
   Serial.println(analogRead(motorPin));
+  
+   // analogWrite(VICTOR_1_PIN, 234);    //Motor fowards
+   // analogWrite(VICTOR_2_PIN, 127);    //Motor not moving
+   // analogWrite(VICTOR_3_PIN, 23);     //Motor Backwards
 } 
