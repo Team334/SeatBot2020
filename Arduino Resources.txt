@@ -4,3 +4,4 @@ https://howtomechatronics.com/tutorials/arduino/arduino-and-hc-05-bluetooth-modu
 
 Android App for Arduino
 https://howtomechatronics.com/tutorials/arduino/how-to-build-custom-android-app-for-your-arduino-project-using-mit-app-inventor/
+- the app uses MIT APP INVENTOR(.aia), and the sample project is in the repo
