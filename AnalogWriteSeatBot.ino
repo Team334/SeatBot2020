@@ -13,7 +13,7 @@ void  setup()
 void loop() 
 {
   Serial.println(Serial.available());
-  Serial.println("loop is working");
-  analogWrite(motorPin, 75);
+  Serial.println("Going forward");
+  analogWrite(motorPin, 234);
   Serial.println(analogRead(motorPin));
 } 
