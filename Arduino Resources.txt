@@ -9,7 +9,21 @@ https://howtomechatronics.com/tutorials/arduino/arduino-and-hc-05-bluetooth-modu
 Android App for Arduino
 https://howtomechatronics.com/tutorials/arduino/how-to-build-custom-android-app-for-your-arduino-project-using-mit-app-inventor/
 - the app uses MIT APP INVENTOR(.aia), and the sample project is in the repo
-- the MIT APP INVENTOR creates an apk file, a sample is in the repo
+- just build the app when you have logged in
+
 Arduino uses the .ino format, and a sample project is in the repo
+
+When using the Serial read, wait for the console, it may take a while to show up
+
+Use softwareserial along with serial to actually READ the value, it is not just serial.read or softwareserial.read
+- look in btserialreadtest in the repo
+
+SOME ARDUINOS MAY NOT FUNCTION WITH BLUETOOTH, find the one that works, there is a box that says bt issue, do not use that one
+
+HC05
+- constant blinking means it is ready to go
+- slow blinking means it is already paired and connected to a device
+- DISCONNECT THE TX/RX WIRES FROM ARDUINO WHEN UPLOADING CODE, it will say port in use
+
 
 
