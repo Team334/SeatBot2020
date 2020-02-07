@@ -25,5 +25,5 @@ HC05
 - slow blinking means it is already paired and connected to a device
 - DISCONNECT THE TX/RX WIRES FROM ARDUINO WHEN UPLOADING CODE, it will say port in use
 
-
+HC05 only takes in one byte at a time, difficult to set motors to something that only have 1 byte of data
 
