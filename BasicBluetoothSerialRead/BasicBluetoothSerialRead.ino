@@ -21,7 +21,7 @@ void setup() {
   leftSide.attach(12);
   rightSide.attach(13);
 
-  SPEED = 30;
+  SPEED = 20;
   ZERO = 90;
   receivedData = false;
 }
@@ -29,7 +29,7 @@ void setup() {
 void loop() {
   if (Serial.available() > 0) {
     state = Serial.read();
-//    Serial.println(state);
+    //    Serial.println(state);
     receivedData = true;
   }
 
@@ -84,10 +84,15 @@ void loop() {
     Serial.print("RIGHT:");
     Serial.println(rightSpeed);
   }
-  if(receivedData){
-    state = -1;
-    receivedData = false;
-  }
   leftSide.write(leftSpeed);
   rightSide.write(rightSpeed);
+  if (receivedData) {
+    state = -1;
+    receivedData = false;
+    Serial.print("LEFT Motor:");
+    Serial.println(leftSide.read());
+
+    Serial.print("RIGHT Motor:");
+    Serial.println(rightSide.read());
+  }
 }
