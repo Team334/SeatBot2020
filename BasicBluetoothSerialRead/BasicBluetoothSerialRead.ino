@@ -21,7 +21,7 @@ void setup() {
   leftSide.attach(12);
   rightSide.attach(13);
 
-  SPEED = 5;
+  SPEED = 30;
   ZERO = 60;
   receivedData = false;
 }
