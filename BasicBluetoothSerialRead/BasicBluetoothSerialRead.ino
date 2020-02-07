@@ -9,6 +9,9 @@ int leftSpeed;
 int rightSpeed;
 int SPEED;
 int ZERO;
+int state;
+
+bool receivedData;
 
 void setup() {
   // put your setup code here, to run once:
@@ -20,40 +23,71 @@ void setup() {
 
   SPEED = 5;
   ZERO = 60;
+  receivedData = false;
 }
 
 void loop() {
-  while (Serial.available() < 0) { Serial.println("ERROR: NO COMM TO BLUETOOTH"); }
-  if (Serial.read() == '0') {
+  if (Serial.available() > 0) {
+    state = Serial.read();
+//    Serial.println(state);
+    receivedData = true;
+  }
+
+  if (state == 48) {
     // forward
     leftSpeed = ZERO + SPEED;
     rightSpeed = ZERO - SPEED;
+    Serial.print("LEFT:");
+    Serial.println(leftSpeed);
+
+    Serial.print("RIGHT:");
+    Serial.println(rightSpeed);
   }
-  else if (Serial.read() == '1') {
+  else if (state == 49) {
     // backward
     leftSpeed = ZERO - SPEED;
     rightSpeed = ZERO + SPEED;
+    Serial.print("LEFT:");
+    Serial.println(leftSpeed);
+
+    Serial.print("RIGHT:");
+    Serial.println(rightSpeed);
   }
-  else if (Serial.read() == '2') {
+  else if (state == 50) {
     // left
     leftSpeed = ZERO + SPEED;
     rightSpeed = ZERO + SPEED;
+    Serial.print("LEFT:");
+    Serial.println(leftSpeed);
+
+    Serial.print("RIGHT:");
+    Serial.println(rightSpeed);
   }
-  else if (Serial.read() == '3') {
+  else if (state == 51) {
     // right
     leftSpeed = ZERO - SPEED;
     rightSpeed = ZERO - SPEED;
+    Serial.print("LEFT:");
+    Serial.println(leftSpeed);
+
+    Serial.print("RIGHT:");
+    Serial.println(rightSpeed);
   }
-  else if (Serial.read() == '4') {
+  else if (state == 52) {
     // stop
     leftSpeed = ZERO;
     rightSpeed = ZERO;
+
+    Serial.print("LEFT:");
+    Serial.println(leftSpeed);
+
+    Serial.print("RIGHT:");
+    Serial.println(rightSpeed);
+  }
+  if(receivedData){
+    state = -1;
+    receivedData = false;
   }
   leftSide.write(leftSpeed);
   rightSide.write(rightSpeed);
-  Serial.print("LEFT:");
-  Serial.println(leftSide.read());
-
-  Serial.print("RIGHT:");
-  Serial.println(rightSide.read());
 }
