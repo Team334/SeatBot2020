@@ -58,8 +58,8 @@ void loop() {
   else if (state == 50) {
     // left
 
-    leftSpeed = ZERO + SPEED;
-    rightSpeed = ZERO + SPEED;
+    leftSpeed = ZERO - SPEED;
+    rightSpeed = ZERO - SPEED;
 
     //    Serial.print("LEFT:");
     //    Serial.println(leftSpeed);
@@ -70,8 +70,8 @@ void loop() {
   else if (state == 51) {
     // right
 
-    leftSpeed = ZERO - SPEED;
-    rightSpeed = ZERO - SPEED;
+    leftSpeed = ZERO + SPEED;
+    rightSpeed = ZERO + SPEED;
 
     //    Serial.print("LEFT:");
     //    Serial.println(leftSpeed);
