@@ -27,3 +27,4 @@ HC05
 
 HC05 only takes in one byte at a time, difficult to set motors to something that only have 1 byte of data
 
+With a person on the bot, sufficient power is needed to be sent to the bot for it to move
