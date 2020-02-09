@@ -58,6 +58,10 @@ void loop() {
   // 0.5 * 180 * 1 + 90 = 180, max
   // 0 * 180 * 1 + 90 = 90, zero
   // -0.5 * 180 * 1 + 90 = 0, min
+
+  // 0.5 * 180 * 0.5 + 90 = 135, max
+  // 0 * 180 * 0.5 + 90 = 90, zero
+  // -0.5 * 180 * 0.5 + 90 = 45, min
   Vrx = Vrx * MOTOR_MAX * MOTOR_MULTIPLIER + MOTOR_ZERO;
   Vry = Vry * MOTOR_MAX * MOTOR_MULTIPLIER + MOTOR_ZERO;
 
