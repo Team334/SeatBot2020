@@ -18,15 +18,13 @@ void setup() {
   mySerial.begin(9600);
   Serial.begin(9600);
 
-  leftSide.attach(12);
-  rightSide.attach(13);
+  leftSide.attach(13);
+  rightSide.attach(12);
 
-  SPEED = 25;
+  SPEED = 50;
   ZERO = 90;
   state = -1;
   receivedData = false;
-
-
   leftSide.write(ZERO);
   rightSide.write(ZERO);
 }
@@ -39,8 +37,8 @@ void loop() {
   }
   if (state == 48) {
     // forward
-    leftSpeed = ZERO - SPEED;
-    rightSpeed = ZERO + SPEED;
+    leftSpeed = ZERO + SPEED;
+    rightSpeed = ZERO - SPEED;
     //    Serial.print("LEFT:");
     //    Serial.println(leftSpeed);
     //
@@ -49,8 +47,8 @@ void loop() {
   }
   else if (state == 49) {
     // backward
-    leftSpeed = ZERO + SPEED;
-    rightSpeed = ZERO - SPEED;
+    leftSpeed = ZERO - SPEED;
+    rightSpeed = ZERO + SPEED;
     //    Serial.print("LEFT:");
     //    Serial.println(leftSpeed);
     //
@@ -59,8 +57,10 @@ void loop() {
   }
   else if (state == 50) {
     // left
-    leftSpeed = ZERO - SPEED;
-    rightSpeed = ZERO - SPEED;
+
+    leftSpeed = ZERO + SPEED;
+    rightSpeed = ZERO + SPEED;
+
     //    Serial.print("LEFT:");
     //    Serial.println(leftSpeed);
     //
@@ -69,8 +69,10 @@ void loop() {
   }
   else if (state == 51) {
     // right
-    leftSpeed = ZERO + SPEED;
-    rightSpeed = ZERO + SPEED;
+
+    leftSpeed = ZERO - SPEED;
+    rightSpeed = ZERO - SPEED;
+
     //    Serial.print("LEFT:");
     //    Serial.println(leftSpeed);
     //
