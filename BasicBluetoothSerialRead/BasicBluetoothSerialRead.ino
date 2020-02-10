@@ -13,8 +13,6 @@ int rightCurrentSpeed;
 
 int SPEED;
 int ZERO;
-int state;
-
 bool receivedData;
 
 void setup() {
@@ -27,7 +25,6 @@ void setup() {
 
   SPEED = 50;
   ZERO = 90;
-  state = -1;
   leftCurrentSpeed = 90;
   rightCurrentSpeed = 90;
 
@@ -41,97 +38,44 @@ void setup() {
 
 void loop() {
   if (Serial.available() > 0) {
-    state = Serial.read();
-    //    Serial.println(state);
+    leftSetSpeed = Serial.read() * ZERO;
+    leftSetSpeed = clampValue(ZERO - SPEED, ZERO + SPEED, leftSetSpeed);
+    Serial.print("SetSpeedleft:");
+    Serial.println(leftSetSpeed);
+    Serial.flush();
+    rightSetSpeed = Serial.read() * ZERO;
+    rightSetSpeed = clampValue(ZERO - SPEED, ZERO + SPEED, rightSetSpeed);
+    Serial.print("SetSpeedright:");
+    Serial.println(rightSetSpeed);
+    Serial.flush();
     receivedData = true;
-  }
-  if (state == 48) {
-    // forward
-    leftSetSpeed = ZERO + SPEED;
-    rightSetSpeed = ZERO - SPEED;
-    //    Serial.print("LEFT:");
-    //    Serial.println(leftSetSpeed);
-    //
-    //    Serial.print("RIGHT:");
-    //    Serial.println(rightSetSpeed);
-  }
-  else if (state == 49) {
-    // backward
-    leftSetSpeed = ZERO - SPEED;
-    rightSetSpeed = ZERO + SPEED;
-    //    Serial.print("LEFT:");
-    //    Serial.println(leftSetSpeed);
-    //
-    //    Serial.print("RIGHT:");
-    //    Serial.println(rightSetSpeed);
-  }
-  else if (state == 50) {
-    // left
-
-    leftSetSpeed = ZERO - SPEED;
-    rightSetSpeed = ZERO - SPEED;
-
-    //    Serial.print("LEFT:");
-    //    Serial.println(leftSetSpeed);
-    //
-    //    Serial.print("RIGHT:");
-    //    Serial.println(rightSetSpeed);
-  }
-  else if (state == 51) {
-    // right
-
-    leftSetSpeed = ZERO + SPEED;
-    rightSetSpeed = ZERO + SPEED;
-
-    //    Serial.print("LEFT:");
-    //    Serial.println(leftSetSpeed);
-    //
-    //    Serial.print("RIGHT:");
-    //    Serial.println(rightSetSpeed);
-  }
-  else if (state == 52) {
-    // stop
-    leftSetSpeed = ZERO;
-    rightSetSpeed = ZERO;
-
-    //    Serial.print("LEFT:");
-    //    Serial.println(leftSetSpeed);
-    //
-    //    Serial.print("RIGHT:");
-    //    Serial.println(rightSetSpeed);
-  }
-  if (receivedData) {
-    state = -1;
-    receivedData = false;
-    //    Serial.print("LEFT Motor:");
-    //    Serial.println(leftSide.read());
-    //
-    //    Serial.print("RIGHT Motor:");
-    //    Serial.println(rightSide.read());
   }
   if (leftCurrentSpeed > leftSetSpeed) {
     leftCurrentSpeed = leftCurrentSpeed - 5;
   } else if (leftCurrentSpeed < leftSetSpeed) {
     leftCurrentSpeed = leftCurrentSpeed + 5;
-  } else if (leftCurrentSpeed == leftSetSpeed) {
-//    Serial.print("On Setpoint Set");
-//    Serial.println(leftCurrentSpeed);
   }
-
   if (rightCurrentSpeed > rightSetSpeed) {
     rightCurrentSpeed = rightCurrentSpeed - 5;
   } else if (rightCurrentSpeed < rightSetSpeed) {
     rightCurrentSpeed = rightCurrentSpeed + 5;
-  } else if (rightCurrentSpeed == rightSetSpeed) {
-//    Serial.print("On Setpoint Right");
-//    Serial.println(rightCurrentSpeed);
   }
   leftSide.write(leftCurrentSpeed);
   rightSide.write(rightCurrentSpeed);
-//  Serial.print("LEFT Motor:");
-//  Serial.println(leftSide.read());
-//
-//  Serial.print("RIGHT Motor:");
-//  Serial.println(rightSide.read());
-//  delay(500);
+  if (receivedData) {
+    Serial.print("LEFT Motor:");
+    Serial.println(leftSide.read());
+
+    Serial.print("RIGHT Motor:");
+    Serial.println(rightSide.read());
+    receivedData = false;
+  }
+}
+int clampValue(int clampLower, int clampHigher, int valueSent) {
+  if (valueSent > clampHigher) {
+    return clampHigher;
+  } else if (valueSent < clampLower) {
+    return clampLower;
+  }
+  return valueSent;
 }
