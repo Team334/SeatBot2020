@@ -13,6 +13,8 @@ int rightCurrentSpeed;
 
 int SPEED;
 int ZERO;
+
+int interPolationSpeed;
 bool receivedData;
 
 void setup() {
@@ -30,7 +32,9 @@ void setup() {
 
   leftSetSpeed = 90;
   rightSetSpeed = 90;
-
+  
+  interPolationSpeed = 2;
+  
   receivedData = false;
   leftSide.write(ZERO);
   rightSide.write(ZERO);
@@ -51,14 +55,14 @@ void loop() {
     receivedData = true;
   }
   if (leftCurrentSpeed > leftSetSpeed) {
-    leftCurrentSpeed = leftCurrentSpeed - 5;
+    leftCurrentSpeed = leftCurrentSpeed - interPolationSpeed;
   } else if (leftCurrentSpeed < leftSetSpeed) {
-    leftCurrentSpeed = leftCurrentSpeed + 5;
+    leftCurrentSpeed = leftCurrentSpeed + interPolationSpeed;
   }
   if (rightCurrentSpeed > rightSetSpeed) {
-    rightCurrentSpeed = rightCurrentSpeed - 5;
+    rightCurrentSpeed = rightCurrentSpeed - interPolationSpeed;
   } else if (rightCurrentSpeed < rightSetSpeed) {
-    rightCurrentSpeed = rightCurrentSpeed + 5;
+    rightCurrentSpeed = rightCurrentSpeed + interPolationSpeed;
   }
   leftSide.write(leftCurrentSpeed);
   rightSide.write(rightCurrentSpeed);
