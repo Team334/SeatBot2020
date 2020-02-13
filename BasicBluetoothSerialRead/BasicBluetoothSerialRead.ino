@@ -13,9 +13,14 @@ int rightCurrentSpeed;
 
 int SPEED;
 int ZERO;
+<<<<<<< HEAD
 int state;
 int acceleration;
 
+=======
+
+int interPolationSpeed;
+>>>>>>> 6a01b0813ac033d84cc263c14d057900b03a0070
 bool receivedData;
 
 void setup() {
@@ -36,7 +41,9 @@ void setup() {
 
   leftSetSpeed = 90;
   rightSetSpeed = 90;
-
+  
+  interPolationSpeed = 2;
+  
   receivedData = false;
   leftSide.write(ZERO);
   rightSide.write(ZERO);
@@ -113,21 +120,33 @@ void loop() {
     //    Serial.println(rightSide.read());
   }
   if (leftCurrentSpeed > leftSetSpeed) {
+<<<<<<< HEAD
     leftCurrentSpeed = leftCurrentSpeed - acceleration;
   } else if (leftCurrentSpeed < leftSetSpeed) {
     leftCurrentSpeed = leftCurrentSpeed + acceleration;
   } else if (leftCurrentSpeed == leftSetSpeed) {
     //    Serial.print("On Setpoint Set");
     //    Serial.println(leftCurrentSpeed);
+=======
+    leftCurrentSpeed = leftCurrentSpeed - interPolationSpeed;
+  } else if (leftCurrentSpeed < leftSetSpeed) {
+    leftCurrentSpeed = leftCurrentSpeed + interPolationSpeed;
+>>>>>>> 6a01b0813ac033d84cc263c14d057900b03a0070
   }
 
   if (rightCurrentSpeed > rightSetSpeed) {
+<<<<<<< HEAD
     rightCurrentSpeed = rightCurrentSpeed - acceleration;
   } else if (rightCurrentSpeed < rightSetSpeed) {
     rightCurrentSpeed = rightCurrentSpeed + acceleration;
   } else if (rightCurrentSpeed == rightSetSpeed) {
     //    Serial.print("On Setpoint Right");
     //    Serial.println(rightCurrentSpeed);
+=======
+    rightCurrentSpeed = rightCurrentSpeed - interPolationSpeed;
+  } else if (rightCurrentSpeed < rightSetSpeed) {
+    rightCurrentSpeed = rightCurrentSpeed + interPolationSpeed;
+>>>>>>> 6a01b0813ac033d84cc263c14d057900b03a0070
   }
   leftSide.write(leftCurrentSpeed);
   rightSide.write(rightCurrentSpeed);
