@@ -80,7 +80,7 @@ void loop() {
   if (leftCurrentSpeed > leftSetSpeed) {
     leftCurrentSpeed = leftCurrentSpeed - acceleration;
   } else if (leftCurrentSpeed < leftSetSpeed) {
-    leftCurrentSpeed = leftCurrentSpeed + accelerationadd .;
+    leftCurrentSpeed = leftCurrentSpeed + acceleration;
   }
 
   if (rightCurrentSpeed > rightSetSpeed) {
