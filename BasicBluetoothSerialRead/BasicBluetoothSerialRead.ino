@@ -26,10 +26,10 @@ void setup() {
   leftSide.attach(13);
   rightSide.attach(12);
 
-  SPEED = 30;
+  SPEED = 25;
   ZERO = 90;
   state = -1;
-  acceleration = 1;
+  acceleration = .95;
   
   leftCurrentSpeed = 90;
   rightCurrentSpeed = 90;
