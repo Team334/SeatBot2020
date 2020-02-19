@@ -29,7 +29,7 @@ void setup() {
   SPEED = 25;
   ZERO = 90;
   state = -1;
-  acceleration = .95;
+  acceleration = 1;
   
   leftCurrentSpeed = 90;
   rightCurrentSpeed = 90;
